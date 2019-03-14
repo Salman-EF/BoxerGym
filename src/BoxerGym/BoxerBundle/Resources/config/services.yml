@@ -1,0 +1,4 @@
+services:
+#    boxer.example:
+#        class: BoxerBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
