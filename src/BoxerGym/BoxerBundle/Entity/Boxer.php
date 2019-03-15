@@ -5,8 +5,11 @@ namespace BoxerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table("boxers")
+ * @ORM\Entity(repositoryClass="BoxerBundle\Repository\BoxerRepository")
+ * @ORM\Table(name="boxers", uniqueConstraints={
+    * @ORM\UniqueConstraint(name="boxers_id_uindex", columns={"id"}), 
+    * @ORM\UniqueConstraint(name="boxers_email_uindex", columns={"email"})
+ * })
 */
 class Boxer 
 {
