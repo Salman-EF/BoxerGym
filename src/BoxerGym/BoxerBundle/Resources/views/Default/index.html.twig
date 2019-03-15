@@ -1,1 +1,15 @@
-Hello World!
+<html>
+    <body style="text-align:center">
+        <h1>Hello World!</h1>
+        <h3><strong>{{ boxers|length }}</strong> boxers had been created!!</h3>
+
+        <hr>
+
+        <ul>
+            {% for boxer in boxers %}
+                <li>{{ boxer.name }}</li>
+            {% endfor %}
+        </ul>
+
+    </body>
+</html>
