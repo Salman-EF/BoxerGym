@@ -1,3 +1,7 @@
+gym:
+    resource: "@GymBundle/Resources/config/routing.yml"
+    prefix:   /
+
 boxer:
     resource: "@BoxerBundle/Resources/config/routing.yml"
     prefix:   /

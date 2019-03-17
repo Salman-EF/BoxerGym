@@ -4,7 +4,8 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "BoxerBundle\\": "src/BoxerGym/BoxerBundle"
+            "BoxerBundle\\": "src/BoxerGym/BoxerBundle",
+            "GymBundle\\": "src/BoxerGym/GymBundle"
         },
         "classmap": [
             "app/AppKernel.php",
