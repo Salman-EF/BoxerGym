@@ -1,7 +1,7 @@
 boxer_homepage:
     path:     /
-    defaults: { _controller: BoxerBundle:Default:index }
+    defaults: { _controller: BoxerBundle:Boxer:index }
 
 boxer_profile:
     path:     /boxer/{id}
-    defaults: { _controller: BoxerBundle:Default:profile }
+    defaults: { _controller: BoxerBundle:Boxer:profile }

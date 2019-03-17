@@ -36,13 +36,20 @@ class Boxer
     private $password;
 
     /**
+     * @ORM\ManyToOne(targetEntity="GymBundle\Entity\Gym", inversedBy="boxers", cascade={"persist"})
+     * @ORM\JoinColumn(name="gym", referencedColumnName="id")
+    */
+    private $gym;
+
+    /**
      * Contructor
     */
-    function __construct($name,$email,$password)
+    function __construct($name,$email,$password,$gym)
     {
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
+        $this->gym = $gym;
     }
 
 
@@ -122,6 +129,26 @@ class Boxer
     public function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of gym
+     */ 
+    public function getGym()
+    {
+        return $this->gym;
+    }
+
+    /**
+     * Set the value of gym
+     *
+     * @return  self
+     */ 
+    public function setGym($gym)
+    {
+        $this->gym = $gym;
 
         return $this;
     }

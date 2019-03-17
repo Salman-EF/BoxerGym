@@ -1,7 +1,7 @@
 <html>
     <body style="text-align:center">
         <h1>Hello World!</h1>
-        <h3><strong>{{ boxers|length }}</strong> boxers had been created!!</h3>
+        <h3><strong>{{ boxers|length }}</strong> boxers who have been created!!</h3>
 
         <hr>
 
@@ -9,6 +9,21 @@
             {% for boxer in boxers %}
                 <li>{{ boxer.name }}</li>
             {% endfor %}
+        </ul>
+
+        <hr>
+        <h3>Gyms:</h3>
+
+        <ul>
+        {% for gym in gyms %}
+            <li>{{ gym.name }}
+                <ul>
+                {% for boxer in gym.boxers %}
+                    <li>{{ boxer.name }}</li>
+                {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
         </ul>
 
     </body>
