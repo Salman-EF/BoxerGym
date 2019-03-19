@@ -34,15 +34,7 @@ class Gym
      */
     private $boxers;
 
-    /**
-     * Contructor
-    */
-    function __construct($name,$adress)
-    {
-        $this->name = $name;
-        $this->adress = $adress;
-    }
-
+    function __construct() {}
 
     /**
      * Get the value of id

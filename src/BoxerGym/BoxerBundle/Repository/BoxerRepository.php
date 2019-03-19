@@ -24,6 +24,15 @@ class BoxerRepository extends EntityRepository
             ->getResult();
     }
 
+    public function findLastFive() {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT b FROM BoxerBundle:Boxer b ORDER BY b.id DESC'
+            )
+            ->setMaxResults(5)
+            ->getResult();
+    }
+
     public function createBoxer($boxer) {
         $em = $this->getEntityManager();
         $em->persist($boxer);

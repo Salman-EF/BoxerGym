@@ -3,12 +3,13 @@
 {% block Title %}Home{% endblock %}
     
 {% block body %}
-        <h3 class="mt-5"><strong>{{ boxers|length }}</strong> boxers who have been created!!</h3>
+        <h3 class="mt-2"><strong>{{ boxers|length }}</strong> boxers who have been created!!</h3>
 
         <hr>
 
         <ul>
-            {% for boxer in boxers %}
+            <p class="mb-0">Those are the last 5 registered :</p>
+            {% for boxer in lastfive_boxers %}
                 <li>{{ boxer.name }}</li>
             {% endfor %}
         </ul>
@@ -29,8 +30,13 @@
         {% endfor %}
         </div>
         
-        <div class="my-5 text-center">
-            <a href="{{ path('boxer_register') }}">Register</a>
+        <div class="row my-5 text-center">
+            <div class="col-6">
+                <a href="{{ path('boxer_register') }}">Register as Boxer</a>
+            </div>
+            <div class="col-6">
+                <a href="{{ path('gym_register') }}">Register as GYM</a>
+            </div>
         </div>
 
 {% endblock %}

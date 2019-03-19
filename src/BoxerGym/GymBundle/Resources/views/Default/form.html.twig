@@ -1,0 +1,24 @@
+{% extends "BoxerBundle::layout.html.twig" %}
+
+{% block Title %}Gym Registration{% endblock %}
+    
+{% block body %}
+    <div class="w-75 mx-auto mt-3">
+        <a href="{{ path('gym_homepage') }}">Home</a>
+        <form class="border border-light p-5" action="/gyms/create" method="POST">
+
+            <p class="h4 mb-4 text-center">Register your Gym and start having more champs</p>
+
+            <div class="w-50 m-auto">
+                <label for="textInput">Name</label>
+                <input type="text" id="name" name="name" class="form-control mb-4" required>
+
+                <label for="adressInput">Adress</label>
+                <input type="text" id="adress" name="adress" class="form-control mb-4" required>
+
+                <button class="btn btn-info btn-block my-4" type="submit">Sign Up COACH</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -11,23 +11,14 @@ class BoxerController extends Controller
 {
     public function indexAction()
     {
-        $gym1 = new Gym("Tristar Gym", "Canada");
-        $gym2 = new Gym("Banssa Gym", "Casa");
-
-        $new_gyms = [ $gym1, $gym2 ];
-
         $gymRepo = $this->getDoctrine()->getRepository(Gym::class);
-        foreach ($new_gyms as $new_gym) {
-            if (!$gymRepo->findByName($new_gym->getName())) {
-                $gymRepo->createGym($new_gym);
-            }
-        }
         $boxerRepo = $this->getDoctrine()->getRepository(Boxer::class);
 
         return $this->render(
             'BoxerBundle:Default:index.html.twig',
             [
-                'boxers'    => $boxerRepo->findAllOrderByName(), 
+                'boxers'    => $boxerRepo->findAll(), 
+                'lastfive_boxers'    => $boxerRepo->findLastFive(), 
                 'gyms'      => $gymRepo->findAll()
             ]
         );

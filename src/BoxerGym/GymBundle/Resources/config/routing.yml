@@ -1,3 +1,13 @@
 gym_homepage:
-    path:     /gyms
-    defaults: { _controller: GymBundle:Gym:index }
+    path:     /
+    defaults: { _controller: BoxerBundle:Boxer:index }
+    
+gym_register:
+    path:     /gyms/register
+    defaults: { _controller: GymBundle:Gym:newGym }
+    methods: [GET]
+
+api_gym_new:
+    path:     /gyms/create
+    defaults: { _controller: GymBundle:Gym:createGym }
+    methods: [POST]
