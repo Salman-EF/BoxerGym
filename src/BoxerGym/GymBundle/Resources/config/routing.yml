@@ -7,7 +7,22 @@ gym_register:
     defaults: { _controller: GymBundle:Gym:newGym }
     methods: [GET]
 
-api_gym_new:
+gym_new:
     path:     /gyms/create
     defaults: { _controller: GymBundle:Gym:createGym }
+    methods: [POST]
+
+gym_show:
+    path:     /gyms/show/{id}
+    defaults: { _controller: GymBundle:Gym:showGym }
+    methods: [GET]
+    
+gym_delete:
+    path:     /gyms/delete/{id}
+    defaults: { _controller: GymBundle:Gym:deleteGym }
+    methods: [GET]
+
+gym_update:
+    path:     /gyms/update/{id}
+    defaults: { _controller: GymBundle:Gym:updateGym }
     methods: [POST]

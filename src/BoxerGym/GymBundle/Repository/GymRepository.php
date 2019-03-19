@@ -23,4 +23,20 @@ class GymRepository extends EntityRepository
 
         return $gym->getId();
     }
+
+    public function deleteGym($gym) {
+        $em = $this->getEntityManager();
+        $em->remove($gym);
+        $em->flush();
+
+        return $gym;
+    }
+
+    public function updateGym($gym) {
+        $em = $this->getEntityManager();
+        $em->persist($gym);
+        $em->flush();
+
+        return $gym;
+    }
 }

@@ -27,10 +27,10 @@ class Gym
     /**
      * @ORM\Column(type="string")
     */
-    private $adress;
+    private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="BoxerBundle\Entity\Boxer", mappedBy="gym")
+     * @ORM\OneToMany(targetEntity="BoxerBundle\Entity\Boxer", mappedBy="gym", cascade={"persist","remove"})
      */
     private $boxers;
 
@@ -77,21 +77,21 @@ class Gym
     }
 
     /**
-     * Get the value of adress
+     * Get the value of address
      */ 
-    public function getAdress()
+    public function getAddress()
     {
-        return $this->adress;
+        return $this->address;
     }
 
     /**
-     * Set the value of adress
+     * Set the value of address
      *
      * @return  self
      */ 
-    public function setAdress($adress)
+    public function setAddress($address)
     {
-        $this->adress = $adress;
+        $this->address = $address;
 
         return $this;
     }

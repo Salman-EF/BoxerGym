@@ -31,7 +31,7 @@ class Boxer
     private $email;
 
     /**
-     * @ORM\ManyToOne(targetEntity="GymBundle\Entity\Gym", inversedBy="boxers", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="GymBundle\Entity\Gym", inversedBy="boxers", cascade={"persist","remove"})
      * @ORM\JoinColumn(name="gym", referencedColumnName="id")
     */
     private $gym;
