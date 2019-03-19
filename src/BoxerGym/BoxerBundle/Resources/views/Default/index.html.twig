@@ -1,7 +1,9 @@
-<html>
-    <body style="text-align:center">
-        <h1>Hello World!</h1>
-        <h3><strong>{{ boxers|length }}</strong> boxers who have been created!!</h3>
+{% extends "BoxerBundle::layout.html.twig" %}
+
+{% block Title %}Home{% endblock %}
+    
+{% block body %}
+        <h3 class="mt-5"><strong>{{ boxers|length }}</strong> boxers who have been created!!</h3>
 
         <hr>
 
@@ -14,17 +16,17 @@
         <hr>
         <h3>Gyms:</h3>
 
-        <ul>
+        <div class="row my-4">
         {% for gym in gyms %}
-            <li>{{ gym.name }}
-                <ul>
-                {% for boxer in gym.boxers %}
-                    <li>{{ boxer.name }}</li>
-                {% endfor %}
-                </ul>
-            </li>
+        <div class="col-4">
+            <h5>{{ gym.name }}</h5>
+            <ul>
+            {% for boxer in gym.boxers %}
+                <li>{{ boxer.name ~" | "~ boxer.email}}</li>
+            {% endfor %}
+            </ul>
+        </div>
         {% endfor %}
-        </ul>
+        </div>
 
-    </body>
-</html>
+{% endblock %}
