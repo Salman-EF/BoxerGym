@@ -6,10 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BoxerBundle\Entity\Boxer;
 use GymBundle\Entity\Gym;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Doctrine\DBAL\Types\BigIntType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class BoxerController extends Controller
 {
@@ -37,7 +33,7 @@ class BoxerController extends Controller
         );
     }
 
-    public function newBoxerAction(Request $request)
+    public function newBoxerAction()
     {
         return $this->render(
             'BoxerBundle:Default:form.html.twig', 

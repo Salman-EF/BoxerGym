@@ -2,7 +2,7 @@ boxer_homepage:
     path:     /
     defaults: { _controller: BoxerBundle:Boxer:index }
 
-boxer_profile:
+boxer_register:
     path:     /boxer/register
     defaults: { _controller: BoxerBundle:Boxer:newBoxer }
     methods: [GET]

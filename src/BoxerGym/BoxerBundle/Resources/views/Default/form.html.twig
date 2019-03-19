@@ -3,26 +3,29 @@
 {% block Title %}Boxer Registration{% endblock %}
     
 {% block body %}
-    <div class="w-50 mx-auto mt-5">
+    <div class="w-75 mx-auto mt-3">
+        <a href="{{ path('boxer_homepage') }}">Home</a>
         <form class="border border-light p-5" action="/boxer/create" method="POST">
 
-            <p class="h4 mb-4 text-center">Register yourself If you're not scared from Tyson left</p>
+            <p class="h4 mb-4 text-center">Register yourself If you are ready for Tyson's left</p>
 
-            <label for="textInput">Name</label>
-            <input type="text" id="name" name="name" class="form-control mb-4" required>
+            <div class="w-50 m-auto">
+                <label for="textInput">Name</label>
+                <input type="text" id="name" name="name" class="form-control mb-4" required>
 
-            <label for="emailInput">Email</label>
-            <input type="email" id="email" name="email" class="form-control mb-4" required>
+                <label for="emailInput">Email</label>
+                <input type="email" id="email" name="email" class="form-control mb-4" required>
 
-            <label for="select">Gym</label>
-            <select class="browser-default custom-select mb-4" id="gym" name="gym" required>
-                <option value="" disabled="" selected="">Choose your gym</option>
-                {% for gym in gyms %}
-                    <option value={{gym.id}}>{{ gym.name }}</option>
-                {% endfor %}
-            </select>
+                <label for="select">Gym</label>
+                <select class="browser-default custom-select mb-4" id="gym" name="gym" required>
+                    <option value="" disabled="" selected="">Choose your gym</option>
+                    {% for gym in gyms %}
+                        <option value={{gym.id}}>{{ gym.name }}</option>
+                    {% endfor %}
+                </select>
 
-            <button class="btn btn-info btn-block my-4" type="submit">Sign Up CHAMP</button>
+                <button class="btn btn-info btn-block my-4" type="submit">Sign Up CHAMP</button>
+            </div>
         </form>
     </div>
 
