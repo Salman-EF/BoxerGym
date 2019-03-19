@@ -3,5 +3,11 @@ boxer_homepage:
     defaults: { _controller: BoxerBundle:Boxer:index }
 
 boxer_profile:
-    path:     /boxer/{id}
-    defaults: { _controller: BoxerBundle:Boxer:profile }
+    path:     /boxer/register
+    defaults: { _controller: BoxerBundle:Boxer:newBoxer }
+    methods: [GET]
+
+api_boxer_new:
+    path:     /boxer/create
+    defaults: { _controller: BoxerBundle:Boxer:createBoxer }
+    methods: [POST]

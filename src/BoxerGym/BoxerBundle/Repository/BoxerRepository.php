@@ -31,4 +31,10 @@ class BoxerRepository extends EntityRepository
 
         return $boxer->getId();
     }
+
+    public function deleteBoxer($boxer) {
+        $em = $this->getEntityManager();
+        $em->remove($boxer);
+        $em->flush();
+    }
 }

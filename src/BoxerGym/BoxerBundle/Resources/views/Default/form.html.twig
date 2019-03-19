@@ -1,0 +1,43 @@
+<html>
+<head>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/css/mdb.min.css" rel="stylesheet">
+</head>
+<body class="w-50 m-auto">
+    
+    <form class="border border-light p-5" action="/boxer/create" method="POST">
+
+        <p class="h4 mb-4 text-center">Register yourself If you're not scared from Tyson left</p>
+
+        <label for="textInput">Name</label>
+        <input type="text" id="name" name="name" class="form-control mb-4">
+
+        <label for="emailInput">Email</label>
+        <input type="email" id="email" name="email" class="form-control mb-4">
+
+        <label for="select">Gym</label>
+        <select class="browser-default custom-select mb-4" id="gym" name="gym">
+            <option value="" disabled="" selected="">Choose your gym</option>
+            {% for gym in gyms %}
+                <option value={{gym.id}}>{{ gym.name }}</option>
+            {% endfor %}
+        </select>
+
+        <button class="btn btn-info btn-block my-4" type="submit">Sign Up CHAMP</button>
+
+    </form>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/js/mdb.min.js"></script>
+</body>
+</html>

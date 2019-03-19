@@ -5,6 +5,11 @@ namespace BoxerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BoxerBundle\Entity\Boxer;
 use GymBundle\Entity\Gym;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Doctrine\DBAL\Types\BigIntType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class BoxerController extends Controller
 {
@@ -21,31 +26,41 @@ class BoxerController extends Controller
                 $gymRepo->createGym($new_gym);
             }
         }
-
-        $new_boxers = [
-            new Boxer("Salman","salman@gmail.com","SalmanPass",$gym1),
-            new Boxer("Floyd","floyd@gmail.com","FloydPass",$gym2),
-            new Boxer("Ali","ali@gmail.com","AliPass",$gym2),
-            new Boxer("Mike","mike@gmail.com","MikePass",$gym1)
-        ];
-        
         $boxerRepo = $this->getDoctrine()->getRepository(Boxer::class);
-        foreach ($new_boxers as $new_boxer) {
-            if (!$boxerRepo->findByEmail($new_boxer->getEmail())) {
-                $boxerRepo->createBoxer($new_boxer);
-            }
-        }
 
         return $this->render(
             'BoxerBundle:Default:index.html.twig',
             [
                 'boxers'    => $boxerRepo->findAllOrderByName(), 
-                'gyms'      => $gymRepo->findAll()]
+                'gyms'      => $gymRepo->findAll()
+            ]
         );
     }
 
-    public function profileAction()
+    public function newBoxerAction(Request $request)
     {
-        return $this->render('BoxerBundle:Default:profile.html.twig');
+        return $this->render(
+            'BoxerBundle:Default:form.html.twig', 
+            [
+                'gyms'  => $this->getDoctrine()->getRepository(Gym::class)->findAll()
+            ]
+        );
+    }
+    
+    public function createBoxerAction(Request $request)
+    {
+        $boxer_name = $request->get('name');
+        $boxer_email = $request->get('email');
+        $boxer_gym = $request->get('gym');
+        $boxer_gym = $this->getDoctrine()->getRepository(Gym::class)->find($boxer_gym);
+
+        $new_boxer = new Boxer();
+        $new_boxer->setName($boxer_name);
+        $new_boxer->setEmail($boxer_email);
+        $new_boxer->setGym($boxer_gym);
+
+        $this->getDoctrine()->getRepository(Boxer::class)->createBoxer($new_boxer);
+
+        return $this->redirectToRoute('boxer_homepage');
     }
 }
