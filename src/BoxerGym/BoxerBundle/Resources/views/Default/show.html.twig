@@ -1,0 +1,41 @@
+{% extends "BoxerBundle::layout.html.twig" %}
+
+{% block Title %}{{boxer.name}}{% endblock %}
+    
+{% block body %}
+    <div class="w-75 mx-auto mt-3">
+        <a href="{{ path('boxer_homepage') }}">Home</a>
+        <form class="border border-light p-5" action="/boxer/update/{{boxer.id}}" method="POST">
+
+            <p class="h4 mb-4 text-center">Make sure all your credentials are correct</p>
+
+            <div class="w-50 m-auto">
+                <label for="textInput">Name</label>
+                <input type="text" id="name" name="name" class="form-control mb-4" value={{boxer.name}} required>
+
+                <label for="emailInput">Email</label>
+                <input type="email" id="email" name="email" class="form-control mb-4" value={{boxer.email}} required>
+
+                <label for="select">Gym</label>
+                <select class="browser-default custom-select mb-4" id="gym" name="gym" required>
+                    <option value="" disabled>Choose your gym</option>
+                    {% for gym in gyms %}
+                        {% if gym.id == boxer.gym.id %}
+                        <option value={{gym.id}} selected>{{ gym.name }}</option>
+                        {% else %}
+                        <option value={{gym.id}}>{{ gym.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+
+                <div class="text-center">
+                    <button class="btn btn-link my-4">
+                        <a href={{ path('boxer_delete', {'id':boxer.id}) }} class="red-text">Delete Boxer</a>
+                    </button>
+                </div>
+                <button class="btn btn-success btn-block my-4" type="submit">Save Updates</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

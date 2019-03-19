@@ -3,14 +3,25 @@
 {% block Title %}Home{% endblock %}
     
 {% block body %}
-        <h3 class="mt-2"><strong>{{ boxers|length }}</strong> boxers who have been created!!</h3>
+        <h3 class="mt-2 text-center">
+            <strong>{{ boxers|length }}</strong> boxers and 
+            <strong>{{ gyms|length }}</strong> gyms have been created!!</h3>
+        
+        <div class="row my-5 text-center">
+            <div class="col-6">
+                <a href="{{ path('boxer_register') }}">Register as Boxer</a>
+            </div>
+            <div class="col-6">
+                <a href="{{ path('gym_register') }}">Register as GYM</a>
+            </div>
+        </div>
 
         <hr>
 
         <ul>
             <p class="mb-0">Those are the last 5 registered :</p>
             {% for boxer in lastfive_boxers %}
-                <li>{{ boxer.name }}</li>
+                <li><a href="{{ path('boxer_show', {'id':boxer.id}) }}" class="black-text">{{ boxer.name }}</a></li>
             {% endfor %}
         </ul>
 
@@ -20,23 +31,16 @@
         <div class="row my-4">
         {% for gym in gyms %}
         <div class="col-4">
-            <h5>{{ gym.name }}</h5>
+            <h5>{{ gym.name }} ({{ gym.boxers|length }})</h5>
             <ul>
             {% for boxer in gym.boxers %}
-                <li>{{ boxer.name ~" | "~ boxer.email}}</li>
+                <li><a href="{{ path('boxer_show', {'id':boxer.id}) }}" class="black-text">
+                    {{ boxer.name ~" | "~ boxer.email}}
+                </a></li>
             {% endfor %}
             </ul>
         </div>
         {% endfor %}
-        </div>
-        
-        <div class="row my-5 text-center">
-            <div class="col-6">
-                <a href="{{ path('boxer_register') }}">Register as Boxer</a>
-            </div>
-            <div class="col-6">
-                <a href="{{ path('gym_register') }}">Register as GYM</a>
-            </div>
         </div>
 
 {% endblock %}

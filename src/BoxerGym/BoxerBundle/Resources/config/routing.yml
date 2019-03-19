@@ -7,7 +7,22 @@ boxer_register:
     defaults: { _controller: BoxerBundle:Boxer:newBoxer }
     methods: [GET]
 
-api_boxer_new:
+boxer_new:
     path:     /boxer/create
     defaults: { _controller: BoxerBundle:Boxer:createBoxer }
+    methods: [POST]
+
+boxer_show:
+    path:     /boxer/show/{id}
+    defaults: { _controller: BoxerBundle:Boxer:showBoxer }
+    methods: [GET]
+    
+boxer_delete:
+    path:     /boxer/delete/{id}
+    defaults: { _controller: BoxerBundle:Boxer:deleteBoxer }
+    methods: [GET]
+
+boxer_update:
+    path:     /boxer/update/{id}
+    defaults: { _controller: BoxerBundle:Boxer:updateBoxer }
     methods: [POST]

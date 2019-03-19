@@ -50,4 +50,38 @@ class BoxerController extends Controller
 
         return $this->redirectToRoute('boxer_homepage');
     }
+
+    public function showBoxerAction($id)
+    {
+        return $this->render(
+            'BoxerBundle:Default:show.html.twig', 
+            [
+                'boxer'  => $this->getDoctrine()->getRepository(Boxer::class)->find($id),
+                'gyms'  => $this->getDoctrine()->getRepository(Gym::class)->findAll()
+            ]
+        );
+    }
+
+    public function deleteBoxerAction($id)
+    {
+        $boxer = $this->getDoctrine()->getRepository(Boxer::class)->find($id);
+        $this->getDoctrine()->getRepository(Boxer::class)->deleteBoxer($boxer);
+        return $this->redirectToRoute('boxer_homepage');
+    }
+
+    public function updateBoxerAction($id, Request $request)
+    {
+        $boxer = $this->getDoctrine()->getRepository(Boxer::class)->find($id);
+        $boxer_name = $request->get('name');
+        $boxer_email = $request->get('email');
+        $boxer_gym = $request->get('gym');
+        $boxer_gym = $this->getDoctrine()->getRepository(Gym::class)->find($boxer_gym);
+
+        $boxer->setName($boxer_name);
+        $boxer->setEmail($boxer_email);
+        $boxer->setGym($boxer_gym);
+        $this->getDoctrine()->getRepository(Boxer::class)->updateBoxer($boxer);
+
+        return $this->redirectToRoute('boxer_homepage');
+    }
 }
