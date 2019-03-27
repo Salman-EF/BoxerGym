@@ -5,7 +5,7 @@
 {% block body %}
     <div class="w-75 mx-auto mt-3">
         <a href="{{ path('boxer_homepage') }}">Home</a>
-        <form class="border border-light p-5" action="/boxer/create" method="POST">
+        <form id="boxer_form" class="border border-light p-5" action="/boxer/create" method="POST">
 
             <p class="h4 mb-4 text-center">Register yourself If you are ready for Tyson's left</p>
 
@@ -29,4 +29,31 @@
         </form>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        {# Boxer register form validation #}
+        $("#boxer_form").submit( function(e) {
+            e.preventDefault();
+            let url = "{{ path('boxer_register_check') }}",
+                form_data = $(this).serialize();
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/x-www-form-urlencoded'
+                },
+                body: form_data,
+            }).then(response => response.json())
+                .then(data => {
+                    switch (data) {
+                        case 'name': $(this).find("input[name='name']").focus();break;
+                        case 'email': $(this).find("input[name='email']").focus();break;
+                        default: window.location = '{{ path('boxer_homepage') }}';
+                    }
+                })
+        });
+    </script>
 {% endblock %}

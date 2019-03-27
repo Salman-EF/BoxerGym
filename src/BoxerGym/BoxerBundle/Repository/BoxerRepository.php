@@ -8,12 +8,25 @@ class BoxerRepository extends EntityRepository
 {
     
     public function findByEmail($email) {
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT b FROM BoxerBundle:Boxer b WHERE b.email = :email'
-            )
-            ->setParameter('email',$email)
-            ->getOneOrNullResult();
+        $em = $this->getEntityManager();
+        $qb = $this->_em->createQueryBuilder();
+        $boxerByName = $qb->select('b')
+            ->from('BoxerBundle:Boxer', 'b')
+            ->where('b.email = :email')
+            ->setParameter('email',$email);
+        $boxerByName = $qb->getQuery()->getResult();
+        return $boxerByName;
+    }
+
+    public function findByName($name) {
+        $em = $this->getEntityManager();
+        $qb = $this->_em->createQueryBuilder();
+        $boxerByName = $qb->select('b')
+            ->from('BoxerBundle:Boxer', 'b')
+            ->where('b.name = :name')
+            ->setParameter('name',$name);
+        $boxerByName = $qb->getQuery()->getResult();
+        return $boxerByName;
     }
 
     public function findAllOrderByName() {

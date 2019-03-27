@@ -7,6 +7,11 @@ boxer_register:
     defaults: { _controller: BoxerBundle:Boxer:newBoxer }
     methods: [GET]
 
+boxer_register_check:
+    path:     /boxer/register_check
+    defaults: { _controller: BoxerBundle:Form:validNewBoxer }
+    methods: [POST]
+
 boxer_new:
     path:     /boxer/create
     defaults: { _controller: BoxerBundle:Boxer:createBoxer }
