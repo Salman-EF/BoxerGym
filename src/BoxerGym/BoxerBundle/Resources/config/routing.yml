@@ -31,3 +31,8 @@ boxer_update:
     path:     /boxer/update/{id}
     defaults: { _controller: BoxerBundle:Boxer:updateBoxer }
     methods: [POST]
+
+boxer_send_email:
+    path:     /boxer/send/{id}
+    defaults: { _controller: BoxerBundle:Boxer:sendToBoxer }
+    methods: [POST]

@@ -5,6 +5,7 @@ namespace BoxerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BoxerBundle\Entity\Boxer;
 use GymBundle\Entity\Gym;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class BoxerController extends Controller
@@ -83,5 +84,36 @@ class BoxerController extends Controller
         $this->getDoctrine()->getRepository(Boxer::class)->updateBoxer($boxer);
 
         return $this->redirectToRoute('boxer_homepage');
+    }
+
+    public function sendToBoxerAction($id, Request $request)
+    {
+        $boxer = $this->getDoctrine()->getRepository(Boxer::class)->find($id);
+        $message = (new \Swift_Message('Hello Email'))
+            ->setFrom('support@boxerapp.com')
+            ->setTo($boxer->getEmail())
+            ->setBody(
+                $this->renderView(
+                    'BoxerBundle:Emails:hello.html.twig',
+                    ['boxer' => $boxer]
+                ),
+                'text/html'
+            )
+            /*
+             * If you also want to include a plaintext version of the message
+            ->addPart(
+                $this->renderView(
+                    'Emails/registration.txt.twig',
+                    ['name' => $name]
+                ),
+                'text/plain'
+            )
+            */
+        ;
+
+        $this->get('mailer')->send($message);
+
+        return new JsonResponse("email sent");
+
     }
 }

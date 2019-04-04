@@ -28,14 +28,40 @@
                     {% endfor %}
                 </select>
 
-                <div class="text-center">
-                    <button class="btn btn-link my-4">
-                        <a href={{ path('boxer_delete', {'id':boxer.id}) }} class="red-text">Delete Boxer</a>
+                <div class="text-center my-4">
+                    <button id="email_boxer" class="btn btn-link" style="text-transform: none!important;">
+                        Email {{ boxer.name }}
+                    </button>
+
+                    <button class="btn btn-link">
+                        <a href={{ path('boxer_delete', {'id':boxer.id}) }} class="red-text">Delete {{ boxer.name }}</a>
                     </button>
                 </div>
-                <button class="btn btn-success btn-block my-4" type="submit">Save Updates</button>
+                <button class="btn btn-success btn-block mb-4" type="submit">Save Updates</button>
             </div>
         </form>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        {# Boxer register form validation #}
+        $("#email_boxer").click( function(e) {
+            e.preventDefault();
+            let url = "{{ path('boxer_send_email', {'id': boxer.id}) }}"
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                // body: form_data,
+            }).then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                })
+        });
+    </script>
 {% endblock %}
